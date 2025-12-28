@@ -1,0 +1,512 @@
+/* =========================
+   GOOGLE FONT
+========================= */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+/* =========================
+   ROOT VARIABLES (LIGHT THEME)
+========================= */
+:root {
+    --primary: #10b981;
+    /* Medical Green */
+    --primary-dark: #059669;
+    --accent: #f59e0b;
+    /* Warning/Accent */
+    --danger: #ef4444;
+
+    --bg-main: #f8fafc;
+    /* Light Gray Background */
+    --bg-card: #ffffff;
+    /* White Card */
+    --bg-input: #f1f5f9;
+
+    --text-main: #1e293b;
+    /* Dark Slate */
+    --text-muted: #64748b;
+
+    --border: #e2e8f0;
+    --radius: 12px;
+    --shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+    --transition: all 0.3s ease;
+}
+
+/* =========================
+   RESET
+========================= */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    background: var(--bg-main);
+    color: var(--text-main);
+    min-height: 100vh;
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+button {
+    cursor: pointer;
+    font-family: inherit;
+}
+
+/* =========================
+   CONTAINER
+========================= */
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 1.5rem;
+}
+
+.section {
+    padding: 3rem 0;
+}
+
+/* =========================
+   NAVBAR
+========================= */
+.navbar {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border);
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+}
+
+.nav-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 70px;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--primary);
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+}
+
+.nav-link {
+    color: var(--text-main);
+    font-weight: 500;
+    transition: var(--transition);
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary);
+}
+
+/* Cart Icon Badge */
+.nav-link ion-icon {
+    font-size: 1.2rem;
+    vertical-align: middle;
+}
+
+#cart-count {
+    background: var(--danger);
+    color: white;
+    font-size: 0.75rem;
+    padding: 2px 6px;
+    border-radius: 50%;
+    margin-left: 4px;
+    vertical-align: top;
+}
+
+/* Mobile Toggle */
+.nav-toggle {
+    display: none;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: var(--text-main);
+}
+
+/* =========================
+   HERO / HOME
+========================= */
+.hero {
+    text-align: center;
+    padding: 5rem 1.5rem;
+    background: linear-gradient(to bottom, #ecfdf5, #f8fafc);
+}
+
+.hero h1 {
+    font-size: 3rem;
+    color: var(--text-main);
+    margin-bottom: 1rem;
+}
+
+.hero p {
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 2rem;
+}
+
+.btn-primary {
+    background: var(--primary);
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: var(--radius);
+    font-weight: 600;
+    border: none;
+    transition: var(--transition);
+    display: inline-block;
+}
+
+.btn-primary:hover {
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+}
+
+/* =========================
+   MEDICINES PAGE
+========================= */
+.filters-bar {
+    background: var(--bg-card);
+    padding: 1.5rem;
+    border-radius: var(--radius);
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    box-shadow: var(--shadow);
+    flex-wrap: wrap;
+}
+
+.search-input,
+.category-select {
+    background: var(--bg-input);
+    color: var(--text-main);
+    border: 1px solid var(--border);
+    padding: 0.8rem 1rem;
+    border-radius: var(--radius);
+    flex: 1;
+    min-width: 200px;
+}
+
+.search-input:focus,
+.category-select:focus {
+    outline: 2px solid var(--primary);
+    border-color: transparent;
+}
+
+.products-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 2rem;
+}
+
+.product-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: var(--radius);
+    padding: 1rem;
+    transition: var(--transition);
+    display: flex;
+    flex-direction: column;
+}
+
+.product-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    border-color: var(--primary);
+}
+
+.product-image {
+    width: 100%;
+    height: 160px;
+    object-fit: contain;
+    background: #f8fafc;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+}
+
+.product-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.product-category {
+    color: var(--primary);
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.product-title {
+    font-size: 1rem;
+    margin: 0.25rem 0;
+    font-weight: 600;
+    color: var(--text-main);
+}
+
+.product-stock {
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-bottom: 0.5rem;
+}
+
+.product-price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    margin-top: auto;
+    margin-bottom: 1rem;
+    color: var(--text-main);
+}
+
+.btn-add-cart {
+    width: 100%;
+    padding: 0.75rem;
+    background: var(--bg-input);
+    color: var(--primary);
+    border: 1px solid var(--primary);
+    border-radius: 8px;
+    font-weight: 600;
+    transition: var(--transition);
+}
+
+.btn-add-cart:hover {
+    background: var(--primary);
+    color: white;
+}
+
+/* =========================
+   CART PAGE
+========================= */
+.cart-layout {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 2rem;
+}
+
+.cart-items,
+.cart-summary {
+    background: var(--bg-card);
+    border-radius: var(--radius);
+    padding: 1.5rem;
+    box-shadow: var(--shadow);
+    border: 1px solid var(--border);
+}
+
+.cart-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 0;
+    border-bottom: 1px solid var(--border);
+}
+
+.cart-item:last-child {
+    border-bottom: none;
+}
+
+.cart-item-details strong {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.cart-controls {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.qty-btn {
+    width: 28px;
+    height: 28px;
+    border-radius: 4px;
+    background: var(--bg-input);
+    border: 1px solid var(--border);
+    color: var(--text-main);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.qty-btn:hover {
+    background: var(--border);
+}
+
+.cart-item-total {
+    font-weight: 600;
+    min-width: 80px;
+    text-align: right;
+}
+
+.btn-checkout {
+    width: 100%;
+    margin-top: 1.5rem;
+    padding: 1rem;
+    background: var(--primary);
+    border: none;
+    border-radius: var(--radius);
+    color: white;
+    font-weight: 600;
+    font-size: 1rem;
+}
+
+.btn-checkout:hover {
+    background: var(--primary-dark);
+}
+
+/* =========================
+   LOGIN / REGISTER PAGE
+========================= */
+.auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 80vh;
+    padding: 2rem;
+}
+
+.auth-box {
+    background: var(--bg-card);
+    padding: 2.5rem;
+    border-radius: var(--radius);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    width: 100%;
+    max-width: 400px;
+    border: 1px solid var(--border);
+}
+
+.auth-box h2 {
+    color: var(--primary);
+    margin-bottom: 0.5rem;
+    text-align: center;
+}
+
+.auth-box p {
+    color: var(--text-muted);
+    text-align: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.auth-box input,
+.auth-box textarea {
+    width: 100%;
+    padding: 0.8rem;
+    margin-bottom: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    background: var(--bg-input);
+    color: var(--text-main);
+    font-family: inherit;
+}
+
+.auth-box input:focus {
+    outline: 2px solid var(--primary);
+    border-color: transparent;
+}
+
+.auth-btn {
+    width: 100%;
+    padding: 0.9rem;
+    background: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    margin-top: 1rem;
+}
+
+.auth-btn:hover {
+    background: var(--primary-dark);
+}
+
+.toggle {
+    text-align: center;
+    margin-top: 1.5rem;
+    font-size: 0.9rem;
+    color: var(--text-muted);
+}
+
+.toggle span {
+    color: var(--primary);
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.toggle span:hover {
+    text-decoration: underline;
+}
+
+.hidden {
+    display: none;
+}
+
+/* =========================
+   FOOTER
+========================= */
+.footer {
+    text-align: center;
+    padding: 2rem;
+    background: var(--bg-card);
+    border-top: 1px solid var(--border);
+    color: var(--text-muted);
+    margin-top: 3rem;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 70px;
+        left: 0;
+        right: 0;
+        background: var(--bg-card);
+        padding: 1rem;
+        border-bottom: 1px solid var(--border);
+        box-shadow: var(--shadow);
+    }
+
+    .nav-links.active {
+        display: flex;
+    }
+
+    .nav-toggle {
+        display: block;
+    }
+
+    .cart-layout {
+        grid-template-columns: 1fr;
+    }
+}
+
+.medicine-img {
+    width: 100%;
+    height: 150px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    background: #f9f9f9;
+}
