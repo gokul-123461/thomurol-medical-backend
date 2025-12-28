@@ -7,10 +7,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-// serve uploaded images
+// =======================
+// STATIC UPLOADS
+// =======================
 app.use("/uploads", express.static("uploads"));
 
+// =======================
+// IN-MEMORY DATA
+// =======================
 let medicines = [];
+let orders = [];
 
 // =======================
 // MULTER CONFIG
@@ -27,13 +33,13 @@ const storage = multer.diskStorage({
 const upload = multer({ storage });
 
 // =======================
-// ADD MEDICINE (ADMIN)
+// MEDICINES API
 // =======================
 app.post("/api/medicines", upload.single("image"), (req, res) => {
   const { name, price, stock, category } = req.body;
 
   const medicine = {
-    id: Date.now(),           // NUMBER ID
+    id: Date.now(),
     name,
     price,
     stock,
@@ -45,32 +51,36 @@ app.post("/api/medicines", upload.single("image"), (req, res) => {
   res.json(medicine);
 });
 
-// =======================
-// GET MEDICINES (CUSTOMER)
-// =======================
 app.get("/api/medicines", (req, res) => {
   res.json(medicines);
 });
 
-// =======================
-// DELETE MEDICINE (ADMIN)  ✅ THIS WAS MISSING
-// =======================
 app.delete("/api/medicines/:id", (req, res) => {
-  const id = Number(req.params.id); // IMPORTANT
+  const id = Number(req.params.id);
+  medicines = medicines.filter(m => m.id !== id);
+  res.json({ message: "Medicine deleted" });
+});
 
-  const before = medicines.length;
-  medicines = medicines.filter(med => med.id !== id);
+// =======================
+// ORDERS API  ✅ NEW
+// =======================
+app.post("/api/orders", (req, res) => {
+  const order = {
+    id: Date.now(),
+    ...req.body,
+    createdAt: new Date()
+  };
 
-  if (medicines.length === before) {
-    return res.status(404).json({ message: "Medicine not found" });
-  }
+  orders.push(order);
+  res.json(order);
+});
 
-  res.json({ message: "Medicine deleted successfully" });
+app.get("/api/orders", (req, res) => {
+  res.json(orders);
 });
 
 // =======================
 const PORT = process.env.PORT || 5000;
-
 app.listen(PORT, () => {
   console.log("Server running on port", PORT);
 });
