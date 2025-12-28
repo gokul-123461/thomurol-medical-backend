@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Thomurol Medical</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <div class="auth-container">
+        <div class="auth-box">
+
+            <!-- LOGIN FORM -->
+            <form id="login-form">
+                <h2>Welcome Back</h2>
+                <p>Sign in to your account</p>
+
+                <input type="email" id="login-email" placeholder="Email Address" required>
+                <input type="password" id="login-password" placeholder="Password" required>
+
+                <button type="submit" class="auth-btn">Sign In</button>
+
+                <div class="toggle">
+                    Don't have an account? <span onclick="showRegister()">Sign Up</span>
+                </div>
+            </form>
+
+            <!-- REGISTER FORM -->
+            <form id="register-form" class="hidden">
+                <h2>Create Account</h2>
+                <p>Join Thomurol Medical today</p>
+
+                <input type="text" id="reg-name" placeholder="Full Name" required>
+                <input type="tel" id="reg-contact" placeholder="Contact Number" required>
+                <textarea id="reg-address" rows="2" placeholder="Delivery Address" required></textarea>
+                <input type="email" id="reg-email" placeholder="Email Address" required>
+                <input type="password" id="reg-password" placeholder="Password" required>
+
+                <button type="submit" class="auth-btn">Create Account</button>
+
+                <div class="toggle">
+                    Already have an account? <span onclick="showLogin()">Login</span>
+                </div>
+            </form>
+
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Simple Toggle Logic for UI
+        const loginForm = document.getElementById('login-form');
+        const registerForm = document.getElementById('register-form');
+
+        function showRegister() {
+            loginForm.classList.add('hidden');
+            registerForm.classList.remove('hidden');
+        }
+
+        function showLogin() {
+            registerForm.classList.add('hidden');
+            loginForm.classList.remove('hidden');
+        }
+
+        // Check URL hash for direct access to register tab
+        if (window.location.hash === '#register') {
+            showRegister();
+        }
+    </script>
+
+</body>
+
+</html>

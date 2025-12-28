@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Thomurol Medical | Admin Login</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="card-header">
+                <div class="logo-placeholder">
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path
+                            d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"
+                            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
+                    </svg>
+                </div>
+                <h1 id="authTitle">Thomurol Medical</h1>
+                <p id="authSubtitle">Admin Portal Access</p>
+            </div>
+
+            <form id="authForm" class="login-form">
+                <div class="input-group" id="nameGroup" style="display: none;">
+                    <label for="name">Full Name</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="name" placeholder="John Doe" autocomplete="name">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+                                <circle cx="12" cy="7" r="4"></circle>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="email">Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="email" placeholder="name@company.com" required autocomplete="email">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z">
+                                </path>
+                                <polyline points="22,6 12,13 2,6"></polyline>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <div class="input-wrapper">
+                        <input type="password" id="password" placeholder="Enter your password" required
+                            autocomplete="current-password">
+                        <span class="icon toggle-password" id="togglePassword">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                                <circle cx="12" cy="12" r="3"></circle>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="input-group" id="movieGroup" style="display: none;">
+                    <label for="movie">Favorite Movie (Security Question)</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="movie" placeholder="e.g. Inception">
+                        <span class="icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                                stroke-width="2">
+                                <rect x="2" y="2" width="20" height="20" rx="2.18" ry="2.18"></rect>
+                                <line x1="7" y1="2" x2="7" y2="22"></line>
+                                <line x1="17" y1="2" x2="17" y2="22"></line>
+                                <line x1="2" y1="12" x2="22" y2="12"></line>
+                                <line x1="2" y1="7" x2="7" y2="7"></line>
+                                <line x1="2" y1="17" x2="7" y2="17"></line>
+                                <line x1="17" y1="17" x2="22" y2="17"></line>
+                                <line x1="17" y1="7" x2="22" y2="7"></line>
+                            </svg>
+                        </span>
+                    </div>
+                </div>
+
+                <div class="form-actions" id="rememberMeGroup">
+                    <div class="checkbox-wrapper">
+                        <input type="checkbox" id="remember">
+                        <label for="remember">Remember me</label>
+                    </div>
+                    <a href="#" class="forgot-password" id="forgotPassword">Forgot password?</a>
+                </div>
+
+                <button type="submit" class="submit-btn" id="authBtn">
+                    <span class="btn-text">Sign In</span>
+                    <div class="loader"></div>
+                </button>
+            </form>
+
+            <!-- Reset Password Section (Hidden) -->
+            <div id="resetSection" style="display: none; text-align: center;">
+                <h2 style="margin-bottom: 1rem; color: var(--primary);">Reset Password</h2>
+                <div class="input-group">
+                    <label for="resetEmail">Email Address</label>
+                    <div class="input-wrapper">
+                        <input type="email" id="resetEmail" placeholder="name@company.com">
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label for="securityAnswer">What is your favorite movie?</label>
+                    <div class="input-wrapper">
+                        <input type="text" id="securityAnswer" placeholder="Your answer">
+                    </div>
+                </div>
+                <button type="button" class="submit-btn" id="verifyResetBtn" style="margin-top: 1rem;">Verify</button>
+                <a href="#" id="backToLogin" style="display: block; margin-top: 1rem;">Back to Login</a>
+            </div>
+
+            <div class="card-footer">
+                <p id="toggleText">Don't have an account? <a href="#" id="toggleAuth">Register</a></p>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+
+</html>

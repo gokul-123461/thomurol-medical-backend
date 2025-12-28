@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicines | Thomurol Medical</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <ion-icon name="medkit"></ion-icon>
+                Thomurol Medical
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="nav-link">Home</a></li>
+                <li><a href="medicines.html" class="nav-link active">Medicines</a></li>
+                <li><a href="cart.html" class="nav-link">Cart</a></li>
+                <li><a href="login.html" class="nav-link">Login</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <section class="section">
+        <div class="container">
+            <h1 style="margin-bottom: 2rem;">Our Medicines</h1>
+
+            <!-- Products Grid -->
+            <div class="products-grid" id="products-container">
+                <p style="grid-column: 1/-1; text-align:center;">
+                    Loading medicines...
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Thomurol Medical. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <!-- IMPORTANT -->
+    <script src="script.js"></script>
+</body>
+
+</html>
