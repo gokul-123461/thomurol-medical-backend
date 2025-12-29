@@ -9,100 +9,85 @@ app.use(cors());
 app.use(express.json());
 
 // =======================
-// STATIC UPLOADS
+// MONGODB CONNECTION
 // =======================
-app.use("/uploads", express.static("uploads"));
-
-// =======================
-// 🔥 MONGODB CONNECTION
-// =======================
-const MONGO_URL =
-  "mongodb+srv://bgokulkrishnan22_db_user:Gokulmongo1234@cluster0.dpizjqe.mongodb.net/thomurol_medical?retryWrites=true&w=majority";
-
-mongoose
-  .connect(MONGO_URL)
+mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log("MongoDB connected"))
-  .catch((err) => console.error("MongoDB error:", err));
+  .catch(err => {
+    console.error("MongoDB error:", err.message);
+    process.exit(1); // STOP app if DB fails
+  });
 
 // =======================
-// 🔥 SCHEMAS & MODELS
+// SCHEMAS
 // =======================
 const MedicineSchema = new mongoose.Schema({
   name: String,
   price: Number,
   stock: Number,
   category: String,
-  image: String,
+  image: String
 });
 
 const OrderSchema = new mongoose.Schema({
   customer: String,
   items: Array,
   total: Number,
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
+  createdAt: { type: Date, default: Date.now }
 });
 
 const Medicine = mongoose.model("Medicine", MedicineSchema);
 const Order = mongoose.model("Order", OrderSchema);
 
 // =======================
-// MULTER CONFIG
+// STATIC UPLOADS
+// =======================
+app.use("/uploads", express.static("uploads"));
+
+// =======================
+// MULTER
 // =======================
 const storage = multer.diskStorage({
   destination: "uploads",
   filename: (req, file, cb) =>
-    cb(null, Date.now() + path.extname(file.originalname)),
+    cb(null, Date.now() + path.extname(file.originalname))
 });
-
 const upload = multer({ storage });
 
 // =======================
 // MEDICINES API
 // =======================
 app.post("/api/medicines", upload.single("image"), async (req, res) => {
-  try {
-    const { name, price, stock, category } = req.body;
-
-    const medicine = new Medicine({
-      name,
-      price,
-      stock,
-      category,
-      image: req.file ? req.file.filename : null,
-    });
-
-    await medicine.save();
-    res.json(medicine);
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ message: "Failed to add medicine" });
-  }
+  const med = await Medicine.create({
+    name: req.body.name,
+    price: req.body.price,
+    stock: req.body.stock,
+    category: req.body.category,
+    image: req.file?.filename
+  });
+  res.json(med);
 });
 
 app.get("/api/medicines", async (req, res) => {
-  const medicines = await Medicine.find();
-  res.json(medicines);
+  const meds = await Medicine.find();
+  res.json(meds);
 });
 
 app.delete("/api/medicines/:id", async (req, res) => {
   await Medicine.findByIdAndDelete(req.params.id);
-  res.json({ message: "Medicine deleted" });
+  res.json({ message: "Deleted" });
 });
 
 // =======================
 // ORDERS API
 // =======================
 app.post("/api/orders", async (req, res) => {
-  const order = new Order(req.body);
-  await order.save();
+  const order = await Order.create(req.body);
   res.json(order);
 });
 
 app.get("/api/orders", async (req, res) => {
-  const orders = await Order.find().sort({ createdAt: -1 });
+  const orders = await Order.find();
   res.json(orders);
 });
 
